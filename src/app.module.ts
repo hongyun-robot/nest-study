@@ -1,24 +1,10 @@
-import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
-import { ConfigService } from './config.service'
-import { DbService } from './db/db.service'
-import { ZhyModule } from './zhy/zhy.module'
-import { TestModule } from './test/test.module'
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
-  imports: [ZhyModule, TestModule],
+  imports: [],
   controllers: [AppController],
-  providers: [
-    AppService,
-    ConfigService,
-    {
-      provide: 'DbService',
-      inject: ['ConfigService'],
-      useFactory(configService) {
-        return new DbService(configService)
-      },
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
